@@ -1,4 +1,4 @@
-import { PuzzlePiece, Warehouse, Truck, TrendingUp } from "lucide-react";
+import { Puzzle, Warehouse, Truck, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const steps = [
@@ -7,7 +7,7 @@ const steps = [
     title: "Connect",
     timeframe: "24 hours",
     description: "Seamlessly integrate your e-commerce platform with our quick commerce infrastructure.",
-    Icon: PuzzlePiece
+    Icon: Puzzle
   },
   {
     number: 2,

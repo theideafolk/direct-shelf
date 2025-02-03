@@ -1,5 +1,6 @@
 import { ShoppingBag, Truck, Home } from "lucide-react";
 import { motion } from "framer-motion";
+import { Card } from "@/components/ui/card";
 
 const caseStudies = [
   {
@@ -46,19 +47,23 @@ const CaseStudies = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:scale-[1.02] transition-transform duration-300"
+              className="h-full"
             >
-              <study.Icon className="w-12 h-12 text-[#3B82F6] mb-6" />
-              <h3 className="text-3xl font-bold text-[#10B981] mb-4">{study.metric}</h3>
-              <p className="text-[#1F2937] italic mb-6 leading-relaxed">{study.quote}</p>
-              <p className="text-sm text-[#6B7280] mb-4">{study.company}</p>
-              <a 
-                href="#" 
-                className="text-sm font-medium text-[#2563EB] inline-flex items-center group"
-              >
-                Read Full Story
-                <span className="ml-2 transform transition-transform group-hover:translate-x-1">→</span>
-              </a>
+              <Card className="h-full flex flex-col p-8">
+                <study.Icon className="w-12 h-12 text-[#3B82F6] mb-6" />
+                <h3 className="text-3xl font-bold text-[#10B981] mb-4">{study.metric}</h3>
+                <p className="text-[#1F2937] italic mb-6 leading-relaxed flex-grow">{study.quote}</p>
+                <div className="mt-auto">
+                  <p className="text-sm text-[#6B7280] mb-4">{study.company}</p>
+                  <a 
+                    href="#" 
+                    className="text-sm font-medium text-[#2563EB] inline-flex items-center group"
+                  >
+                    Read Full Story
+                    <span className="ml-2 transform transition-transform group-hover:translate-x-1">→</span>
+                  </a>
+                </div>
+              </Card>
             </motion.div>
           ))}
         </div>

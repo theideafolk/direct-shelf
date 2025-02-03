@@ -27,7 +27,6 @@ const ROICalculator = () => {
   });
 
   const handleCalculate = () => {
-    // Placeholder calculation logic
     const monthlyOrders = Number(formData.monthlyOrders);
     const aov = Number(formData.averageOrderValue);
     
@@ -95,75 +94,73 @@ const ROICalculator = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="h-full"
             >
-              <Card className="p-6 backdrop-blur-xl bg-white/80 border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="space-y-4">
-                {[
-                  {
-                    label: "Monthly Orders",
-                    placeholder: "e.g., 1000",
-                    name: "monthlyOrders",
-                    tooltip: "Your current average monthly order volume"
-                  },
-                  {
-                    label: "Average Order Value",
-                    placeholder: "e.g., ₹1500",
-                    name: "averageOrderValue",
-                    tooltip: "Average value of each order"
-                  },
-                  {
-                    label: "Current Delivery Time (hours)",
-                    placeholder: "e.g., 72",
-                    name: "currentDeliveryTime",
-                    tooltip: "Your current average delivery time in hours"
-                  },
-                  {
-                    label: "Current Return Rate (%)",
-                    placeholder: "e.g., 20",
-                    name: "currentReturnRate",
-                    tooltip: "Your current product return rate percentage"
-                  }
-                ].map((field) => (
-                  <div key={field.name} className="relative">
-                    <div className="flex items-center justify-between mb-2">
-                      <label className="text-sm font-medium text-gray-700">
-                        {field.label}
-                      </label>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <Info className="w-4 h-4 text-gray-400" />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>{field.tooltip}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+              <Card className="p-6 backdrop-blur-xl bg-white/80 border-gray-100/20 h-full flex flex-col">
+                <div className="space-y-4 flex-grow">
+                  {[
+                    {
+                      label: "Monthly Orders",
+                      placeholder: "e.g., 1000",
+                      name: "monthlyOrders",
+                      tooltip: "Your current average monthly order volume"
+                    },
+                    {
+                      label: "Average Order Value",
+                      placeholder: "e.g., ₹1500",
+                      name: "averageOrderValue",
+                      tooltip: "Average value of each order"
+                    },
+                    {
+                      label: "Current Delivery Time (hours)",
+                      placeholder: "e.g., 72",
+                      name: "currentDeliveryTime",
+                      tooltip: "Your current average delivery time in hours"
+                    },
+                    {
+                      label: "Current Return Rate (%)",
+                      placeholder: "e.g., 20",
+                      name: "currentReturnRate",
+                      tooltip: "Your current product return rate percentage"
+                    }
+                  ].map((field) => (
+                    <div key={field.name} className="relative">
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="text-sm font-medium text-gray-700">
+                          {field.label}
+                        </label>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <Info className="w-4 h-4 text-gray-400" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>{field.tooltip}</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                      <Input
+                        type="number"
+                        placeholder={field.placeholder}
+                        value={formData[field.name as keyof typeof formData]}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          [field.name]: e.target.value
+                        }))}
+                        className="w-full bg-white"
+                      />
                     </div>
-                    <Input
-                      type="number"
-                      placeholder={field.placeholder}
-                      value={formData[field.name as keyof typeof formData]}
-                      onChange={(e) => setFormData(prev => ({
-                        ...prev,
-                        [field.name]: e.target.value
-                      }))}
-                      className="w-full bg-white"
-                    />
-                  </div>
-                ))}
+                  ))}
+                </div>
                 
                 <Button 
                   onClick={handleCalculate}
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 
-                           hover:to-blue-800 shadow-lg hover:shadow-xl transition-all duration-300
-                           hover:scale-[1.02]"
+                  className="w-full mt-6"
                   size="lg"
                 >
                   Calculate Growth Potential
                 </Button>
-              </div>
               </Card>
             </motion.div>
             
@@ -172,41 +169,42 @@ const ROICalculator = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
+              className="h-full"
             >
-              <Card className="p-8 backdrop-blur-xl bg-white/80 border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
-                <TrendingUp className="w-6 h-6 text-green-600" />
-                Your Growth Potential
-              </h3>
-              
-              <div className="space-y-6">
-                {[
-                  { label: "Projected Monthly Revenue", value: results.projectedRevenue },
-                  { label: "Additional Orders/Month", value: results.additionalOrders },
-                  { label: "Reduced Returns Value", value: results.reducedReturns },
-                  { label: "Customer Lifetime Value Impact", value: results.lifetimeValue }
-                ].map((metric, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group"
-                  >
-                    <div className="text-sm text-gray-600 mb-1">{metric.label}</div>
-                    <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 
-                                  bg-clip-text text-transparent group-hover:scale-105 transition-transform">
-                      ₹{metric.value.toLocaleString()}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <div className="mt-8 pt-6 border-t border-gray-100">
-                <div className="text-sm text-gray-500">
-                  * Calculations based on aggregated data from 200+ D2C brands using DirectShelf
+              <Card className="p-8 backdrop-blur-xl bg-white/80 border-gray-100/20 h-full flex flex-col">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
+                  <TrendingUp className="w-6 h-6 text-green-600" />
+                  Your Growth Potential
+                </h3>
+                
+                <div className="space-y-6 flex-grow">
+                  {[
+                    { label: "Projected Monthly Revenue", value: results.projectedRevenue },
+                    { label: "Additional Orders/Month", value: results.additionalOrders },
+                    { label: "Reduced Returns Value", value: results.reducedReturns },
+                    { label: "Customer Lifetime Value Impact", value: results.lifetimeValue }
+                  ].map((metric, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group"
+                    >
+                      <div className="text-sm text-gray-600 mb-1">{metric.label}</div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 
+                                    bg-clip-text text-transparent group-hover:scale-105 transition-transform">
+                        ₹{metric.value.toLocaleString()}
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
+                
+                <div className="mt-8 pt-6 border-t border-gray-100">
+                  <div className="text-sm text-gray-500">
+                    * Calculations based on aggregated data from 200+ D2C brands using DirectShelf
+                  </div>
+                </div>
               </Card>
             </motion.div>
           </div>

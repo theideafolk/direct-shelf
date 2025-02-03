@@ -76,7 +76,7 @@ const ROICalculator = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-12 max-w-3xl mx-auto"
         >
           <div className="inline-flex items-center justify-center p-2 bg-blue-100 rounded-full mb-4">
             <Calculator className="w-6 h-6 text-blue-600" />
@@ -84,19 +84,20 @@ const ROICalculator = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Calculate Your Growth Potential with DirectShelf
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600">
             Powered by data from 200+ D2C brands. See how our quick commerce solution can transform your business metrics.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <Card className="p-6 backdrop-blur-xl bg-white/80 border-gray-100 shadow-xl">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <Card className="p-6 backdrop-blur-xl bg-white/80 border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300">
               <div className="space-y-4">
                 {[
                   {
@@ -163,16 +164,16 @@ const ROICalculator = () => {
                   Calculate Growth Potential
                 </Button>
               </div>
-            </Card>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <Card className="p-8 backdrop-blur-xl bg-white/80 border-gray-100 shadow-xl">
+              </Card>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <Card className="p-8 backdrop-blur-xl bg-white/80 border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
                 <TrendingUp className="w-6 h-6 text-green-600" />
                 Your Growth Potential
@@ -206,8 +207,9 @@ const ROICalculator = () => {
                   * Calculations based on aggregated data from 200+ D2C brands using DirectShelf
                 </div>
               </div>
-            </Card>
-          </motion.div>
+              </Card>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

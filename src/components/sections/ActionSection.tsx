@@ -6,13 +6,13 @@ import { motion } from "framer-motion";
 const ActionSection = () => {
   return (
     <section className="bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] py-24 px-4 md:px-6 lg:px-8">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      <div className="container mx-auto max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 place-items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1"
+            className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 w-full max-w-md"
           >
             <h3 className="text-2xl font-bold text-[#1E3A8A] mb-6">
               Book a Growth Strategy Call
@@ -43,7 +43,7 @@ const ActionSection = () => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1"
+            className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 w-full max-w-md h-full"
           >
             <h3 className="text-2xl font-bold text-[#1E3A8A] mb-6">
               Get Started Today

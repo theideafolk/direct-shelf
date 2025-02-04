@@ -1,6 +1,5 @@
 import { Clock, Building2, Shield, Zap, Heart } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 const comparisons = [
   {
@@ -36,11 +35,6 @@ const comparisons = [
 ];
 
 const CompetitiveEdge = () => {
-  const scrollToContact = () => {
-    const element = document.querySelector('#action-section');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section id="competitive-edge" className="bg-white py-24 px-4 md:px-6 lg:px-8">
       <div className="container mx-auto">
@@ -87,16 +81,6 @@ const CompetitiveEdge = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Button 
-              variant="default"
-              className="w-[300px] bg-[#2563EB] hover:bg-[#1E40AF] transition-colors"
-              onClick={scrollToContact}
-            >
-              See How We Compare →
-            </Button>
           </div>
         </div>
       </div>

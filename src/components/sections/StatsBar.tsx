@@ -24,20 +24,21 @@ const stats = [
 
 const StatsBar = () => {
   return (
-    <section className="py-16 md:py-20 bg-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-green-50 opacity-50" />
+    <section className="py-20 md:py-24 bg-white relative overflow-hidden">
+      {/* Background with gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/80 to-purple-50/80 backdrop-blur-sm" />
       
       <div className="container mx-auto px-4 relative">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl font-bold text-center text-gray-800 mb-8"
+          className="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
         >
           Impact on D2C Brands
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -45,27 +46,32 @@ const StatsBar = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="relative group"
+              className="h-full"
             >
-              <div className="bg-white/50 backdrop-blur-lg rounded-2xl p-6 border border-gray-100
+              <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 border border-gray-100
                             shadow-lg hover:shadow-xl transition-all duration-300
-                            hover:scale-105 hover:bg-white/80">
-                <div className="flex items-center justify-center mb-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center
-                                group-hover:scale-110 transition-transform duration-300">
-                    <stat.Icon className="w-6 h-6 text-blue-600" />
+                            hover:scale-105 group h-[320px] flex flex-col items-center justify-center">
+                <div className="mb-6 transform transition-transform duration-300 group-hover:scale-110">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 
+                                flex items-center justify-center">
+                    <stat.Icon className="w-8 h-8 text-blue-600" />
                   </div>
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-gray-800 mb-2
-                                bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">
+                  <motion.div 
+                    initial={{ scale: 1 }}
+                    whileInView={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 0.5, delay: index * 0.3 }}
+                    viewport={{ once: true }}
+                    className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+                  >
                     {stat.number}
-                  </div>
-                  <div className="text-base font-medium text-gray-700 mb-1">
+                  </motion.div>
+                  <div className="text-xl font-semibold text-gray-800 mb-3">
                     {stat.label}
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-base text-gray-600">
                     {stat.context}
                   </div>
                 </div>

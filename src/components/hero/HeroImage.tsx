@@ -12,7 +12,7 @@ const HeroImage = () => {
         <img 
           src="/lovable-uploads/054fc089-7b24-4a8b-9228-3f8ad565a848.png" 
           alt="DirectShelf Quick Commerce Service"
-          className="w-full h-auto shadow-lg rounded-lg transition-transform duration-300 hover:scale-[1.02]"
+          className="w-full h-auto transition-transform duration-300 hover:scale-[1.02]"
         />
       </div>
     </motion.div>

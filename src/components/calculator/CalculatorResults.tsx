@@ -37,7 +37,7 @@ export const CalculatorResults = ({ results }: CalculatorResultsProps) => {
   ];
 
   const scrollToContact = () => {
-    const element = document.querySelector('#contact');
+    const element = document.querySelector('#action-section');
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 

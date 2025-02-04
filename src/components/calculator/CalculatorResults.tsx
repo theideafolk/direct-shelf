@@ -36,6 +36,11 @@ export const CalculatorResults = ({ results }: CalculatorResultsProps) => {
     }
   ];
 
+  const scrollToContact = () => {
+    const element = document.querySelector('#contact');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <Card className="p-8 h-full backdrop-blur-xl bg-white/80 border-gray-100/20">
       <motion.div
@@ -80,6 +85,7 @@ export const CalculatorResults = ({ results }: CalculatorResultsProps) => {
         <Button 
           className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white"
           size="lg"
+          onClick={scrollToContact}
         >
           Get Your Detailed Growth Plan →
         </Button>

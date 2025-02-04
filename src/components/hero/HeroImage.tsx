@@ -9,14 +9,11 @@ const HeroImage = () => {
       className="w-full md:w-2/5 mt-12 md:mt-0"
     >
       <div className="relative max-w-md mx-auto">
-        <div className="aspect-square rounded-2xl p-6 relative overflow-hidden">
-          <img 
-            src="/lovable-uploads/4c1e3b81-7dc8-4777-ac94-efd9e6ac8045.png" 
-            alt="D2C Warehouse at night with delivery trucks"
-            className="absolute inset-0 w-full h-full object-cover rounded-xl"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-        </div>
+        <img 
+          src="/lovable-uploads/054fc089-7b24-4a8b-9228-3f8ad565a848.png" 
+          alt="DirectShelf Quick Commerce Service"
+          className="w-full h-auto shadow-lg rounded-lg transition-transform duration-300 hover:scale-[1.02]"
+        />
       </div>
     </motion.div>
   );

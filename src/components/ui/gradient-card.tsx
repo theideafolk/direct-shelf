@@ -1,17 +1,18 @@
-import { motion, HTMLMotionProps } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface GradientCardProps extends Omit<HTMLMotionProps<"div">, "className" | "children"> {
+interface GradientCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  className?: string;
   index?: number;
+  variant?: "default" | "feature" | "testimonial";
 }
 
-export const GradientCard = ({ 
-  children, 
-  className, 
+export const GradientCard = ({
+  children,
+  className,
   index = 0,
-  ...props 
+  variant = "default",
+  ...props
 }: GradientCardProps) => {
   return (
     <motion.div
@@ -20,15 +21,20 @@ export const GradientCard = ({
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       className={cn(
-        "rounded-2xl p-6 md:p-8 backdrop-blur-xl bg-white/80 border border-gray-100/20",
-        "shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1",
-        "group relative overflow-hidden",
+        "group relative overflow-hidden rounded-2xl p-8",
+        "bg-gradient-to-b from-white/80 to-white/40",
+        "backdrop-blur-xl border border-white/20",
+        "shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
+        "hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)]",
+        "transition-all duration-300 ease-in-out",
+        variant === "feature" && "hover:-translate-y-1",
+        variant === "testimonial" && "hover:scale-[1.02]",
         className
       )}
       {...props}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-[#3B82F6]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="relative z-10">{children}</div>
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </motion.div>
   );
 };

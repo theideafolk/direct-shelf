@@ -26,17 +26,17 @@ const stats = [
 
 const StatsBar = () => {
   return (
-    <section className="py-20 md:py-24 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-50/80 to-purple-50/80 backdrop-blur-sm" />
       
       <div className="container mx-auto px-4 relative">
-        <SectionHeading>
-          Impact on D2C Brands
+        <SectionHeading subtitle="Real results from real D2C brands">
+          Impact on D2C Growth
         </SectionHeading>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {stats.map((stat, index) => (
-            <GradientCard key={index} index={index}>
+            <GradientCard key={index} index={index} variant="feature">
               <div className="flex flex-col items-center text-center">
                 <div className="mb-6 transform transition-transform duration-300 group-hover:scale-110">
                   <div className="w-16 h-16 rounded-full bg-gradient-to-r from-primary/10 to-[#3B82F6]/10 

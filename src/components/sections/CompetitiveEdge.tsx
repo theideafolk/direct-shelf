@@ -37,7 +37,7 @@ const comparisons = [
 
 const CompetitiveEdge = () => {
   return (
-    <section className="bg-white py-24 px-4 md:px-6 lg:px-8">
+    <section id="competitive-edge" className="bg-white py-24 px-4 md:px-6 lg:px-8">
       <div className="container mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ const CompetitiveEdge = () => {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-[#1E3A8A] text-center mb-16"
         >
-          Why Growing D2C Brands Choose DirectShelf
+          Why Choose DirectShelf
         </motion.h2>
 
         <div className="max-w-4xl mx-auto">

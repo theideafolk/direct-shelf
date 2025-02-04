@@ -26,7 +26,7 @@ const stats = [
 
 const StatsBar = () => {
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section id="stats" className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-50/80 to-purple-50/80 backdrop-blur-sm" />
       
       <div className="container mx-auto px-4 relative">

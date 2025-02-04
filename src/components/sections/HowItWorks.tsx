@@ -7,7 +7,7 @@ const HowItWorks = () => {
   const isMobile = useIsMobile();
   
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section id="how-it-works" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <SectionHeading 
           subtitle="Simple integration process to get you started quickly"

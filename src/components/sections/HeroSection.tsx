@@ -35,7 +35,7 @@ const HeroSection = () => {
           <HeroHeadline />
 
           <p className="text-lg md:text-xl text-white/90 font-light max-w-2xl">
-            Join 200+ D2C brands offering 2-4 hour deliveries and capturing the ₹200B quick commerce revolution
+            Join fast-growing D2C brands offering 2-4 hour deliveries and capturing the ₹200B quick commerce revolution
           </p>
 
           <HeroButtons />

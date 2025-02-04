@@ -18,10 +18,10 @@ const HowItWorks = () => {
         <div className="relative max-w-5xl mx-auto">
           <motion.img 
             src={isMobile 
-              ? "/lovable-uploads/9b7404c0-d49a-4f08-8a67-5182b391183a.png"
-              : "/lovable-uploads/e9747a3b-0677-4a48-b981-e12da6b9a9af.png"
+              ? "/lovable-uploads/0caa15cd-8cb6-458d-825d-610d5d5406e5.png"
+              : "/lovable-uploads/0caa15cd-8cb6-458d-825d-610d5d5406e5.png"
             }
-            alt="DirectShelf Quick Commerce Process: Connect, On-board, Store, and Pick & Pack" 
+            alt="DirectShelf Quick Commerce Process: On-board, Connect, Store, and Pick & Pack" 
             className="w-full h-auto rounded-xl shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

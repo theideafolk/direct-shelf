@@ -16,8 +16,9 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { href: "#features", label: "Features" },
+    { href: "#stats", label: "Our Metrics" },
     { href: "#how-it-works", label: "How It Works" },
+    { href: "#competitive-edge", label: "Why Choose Us" },
   ];
 
   const menuVariants = {

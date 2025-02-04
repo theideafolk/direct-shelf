@@ -16,6 +16,7 @@ const Header = () => {
   }, []);
 
   const navItems = [
+    { href: "#calculator", label: "Calculate your ROI" },
     { href: "#stats", label: "Our Metrics" },
     { href: "#how-it-works", label: "How It Works" },
     { href: "#competitive-edge", label: "Why Choose Us" },

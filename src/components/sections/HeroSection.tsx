@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 import { motion } from "framer-motion";
+import { TypeAnimation } from 'react-type-animation';
 
 const floatingAnimation = {
   y: [0, -10, 0],
@@ -60,17 +61,11 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="inline-block relative"
+              className="inline-block"
             >
               <span className="bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
                 Your D2C Brand
               </span>
-              <motion.span
-                className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-300 to-pink-300"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 1, duration: 0.8 }}
-              />
             </motion.span>{" "}
             <motion.span
               initial={{ opacity: 0, y: 20 }}
@@ -81,12 +76,21 @@ const HeroSection = () => {
               Into a
             </motion.span>{" "}
             <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="inline-block bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent"
+              className="inline-block"
             >
-              Quick Commerce Leader
+              <TypeAnimation
+                sequence={[
+                  1000,
+                  'Quick Commerce Leader',
+                ]}
+                wrapper="span"
+                speed={50}
+                className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent"
+                repeat={0}
+              />
             </motion.span>
           </h1>
           <p className="text-lg md:text-xl opacity-90 mb-8">
@@ -118,20 +122,17 @@ const HeroSection = () => {
           className="w-full md:w-2/5 mt-12 md:mt-0"
         >
           <div className="relative">
-            {/* Animated Illustration */}
             <motion.div 
               animate={floatingAnimation}
               className="aspect-square bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-8
                          backdrop-blur-xl border border-white/20 shadow-2xl"
             >
               <div className="relative h-full">
-                {/* City Skyline SVG */}
                 <svg className="absolute bottom-0 left-0 right-0" viewBox="0 0 400 100" fill="none">
                   <path d="M0 100V50h20v20h20V40h20v30h20V50h20v20h20V30h20v40h20V50h20v20h20V40h20v30h20V50h20v20h20V30h20v70H0z" 
                         fill="white" fillOpacity="0.2"/>
                 </svg>
                 
-                {/* Animated Delivery Routes */}
                 <motion.div
                   className="absolute inset-0"
                   animate={{
@@ -147,7 +148,6 @@ const HeroSection = () => {
                   }}
                 />
                 
-                {/* Floating Packages */}
                 {[...Array(3)].map((_, i) => (
                   <motion.div
                     key={i}

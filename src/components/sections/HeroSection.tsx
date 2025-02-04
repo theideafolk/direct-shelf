@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import { Play, ShoppingBag, Cupcake, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
 
@@ -7,7 +7,29 @@ const HeroSection = () => {
   return (
     <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#2B3990] to-[#4169E1] 
                         before:absolute before:inset-0 before:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] 
-                        before:opacity-30 pt-20">
+                        before:opacity-30">
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-[#1E3A8A] animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-transparent to-[#1E3A8A] animate-pulse delay-100"></div>
+      </div>
+
+      {/* Floating Category Icons */}
+      <motion.div 
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        className="absolute top-1/4 left-1/4 text-white/20"
+      >
+        <ShoppingBag size={32} />
+      </motion.div>
+      <motion.div 
+        animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        className="absolute top-1/3 right-1/4 text-white/20"
+      >
+        <Cupcake size={32} />
+      </motion.div>
+
       <div className="container mx-auto px-4 h-full flex flex-col md:flex-row items-center relative z-10 py-12 md:py-20">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
@@ -15,6 +37,16 @@ const HeroSection = () => {
           transition={{ duration: 0.6 }}
           className="w-full md:w-3/5 text-white pt-12 md:pt-0"
         >
+          {/* Quick Impact Text */}
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-white/80 text-sm md:text-base mb-4 font-medium tracking-wide"
+          >
+            Zero Setup Cost • Go Live in 72 Hours
+          </motion.p>
+
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
@@ -67,7 +99,7 @@ const HeroSection = () => {
           <p className="text-lg md:text-xl text-white/90 mb-8 font-light">
             Join 200+ D2C brands offering 2-4 hour deliveries and capturing the ₹200B quick commerce revolution
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <Button
               size="lg"
               className="bg-[#10B981] hover:bg-[#0D9668] text-white border-none w-full sm:w-auto 
@@ -83,6 +115,37 @@ const HeroSection = () => {
             >
               <Play className="w-4 h-4 mr-2" /> Watch How It Works (2 min)
             </Button>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-white/70">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0 }}
+              className="flex items-center gap-2"
+            >
+              <Check className="w-4 h-4" />
+              <span className="text-sm">Shopify Integration Ready</span>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+              className="flex items-center gap-2"
+            >
+              <Check className="w-4 h-4" />
+              <span className="text-sm">Easy API Integration</span>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4 }}
+              className="flex items-center gap-2"
+            >
+              <Check className="w-4 h-4" />
+              <span className="text-sm">Custom Platform Support</span>
+            </motion.div>
           </div>
         </motion.div>
 

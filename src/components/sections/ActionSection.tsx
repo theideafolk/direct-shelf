@@ -82,7 +82,7 @@ const ActionSection = () => {
   };
 
   return (
-    <section className="bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] py-24 px-4 md:px-6 lg:px-8">
+    <section id="action-section" className="bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] py-24 px-4 md:px-6 lg:px-8">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

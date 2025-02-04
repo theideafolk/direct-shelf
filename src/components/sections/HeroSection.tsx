@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Play, ShoppingBag, Cupcake, Check } from "lucide-react";
+import { Play, ShoppingBag, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
 
@@ -27,7 +27,7 @@ const HeroSection = () => {
         transition={{ duration: 4, repeat: Infinity }}
         className="absolute top-1/3 right-1/4 text-white/20"
       >
-        <Cupcake size={32} />
+        <ShoppingBag size={32} />
       </motion.div>
 
       <div className="container mx-auto px-4 h-full flex flex-col md:flex-row items-center relative z-10 py-12 md:py-20">

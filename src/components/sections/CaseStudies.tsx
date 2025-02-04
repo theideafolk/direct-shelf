@@ -2,6 +2,7 @@ import { ShoppingBag, Truck, Home, Star, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { GradientCard } from "@/components/ui/gradient-card";
+import { Button } from "@/components/ui/button";
 
 const caseStudies = [
   {

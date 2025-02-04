@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -19,7 +18,6 @@ const Header = () => {
   const navItems = [
     { href: "#features", label: "Features" },
     { href: "#how-it-works", label: "How It Works" },
-    { href: "#case-studies", label: "Case Studies" },
     { href: "#coverage", label: "Coverage" },
   ];
 
@@ -48,6 +46,18 @@ const Header = () => {
     closed: { opacity: 0, x: 20 },
     open: { opacity: 1, x: 0 }
   };
+
+  const PhoneNumber = () => (
+    <motion.a
+      href="tel:08047939544"
+      className="inline-flex items-center gap-2 text-primary hover:text-primary/90 transition-colors"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <Phone className="h-5 w-5" />
+      <span className="font-medium">08047939544</span>
+    </motion.a>
+  );
 
   return (
     <header 
@@ -94,16 +104,7 @@ const Header = () => {
           animate={{ opacity: 1, x: 0 }}
           className="hidden md:block"
         >
-          <Button 
-            variant="default"
-            className={`transition-all duration-300 ${
-              isScrolled 
-                ? "bg-primary hover:bg-primary/90" 
-                : "bg-primary/90 hover:bg-primary"
-            }`}
-          >
-            Calculate ROI
-          </Button>
+          <PhoneNumber />
         </motion.div>
         
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -159,14 +160,8 @@ const Header = () => {
                   {item.label}
                 </motion.a>
               ))}
-              <motion.div variants={itemVariants}>
-                <Button 
-                  variant="default"
-                  className="mt-4 w-full bg-primary hover:bg-primary/90"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Calculate ROI
-                </Button>
+              <motion.div variants={itemVariants} className="px-4">
+                <PhoneNumber />
               </motion.div>
             </motion.nav>
           </SheetContent>

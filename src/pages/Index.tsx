@@ -4,7 +4,6 @@ import HeroSection from "@/components/sections/HeroSection";
 import StatsBar from "@/components/sections/StatsBar";
 import ROICalculator from "@/components/sections/ROICalculator";
 import HowItWorks from "@/components/sections/HowItWorks";
-import CaseStudies from "@/components/sections/CaseStudies";
 import CompetitiveEdge from "@/components/sections/CompetitiveEdge";
 import ActionSection from "@/components/sections/ActionSection";
 
@@ -17,7 +16,6 @@ const Index = () => {
         <StatsBar />
         <ROICalculator />
         <HowItWorks />
-        <CaseStudies />
         <CompetitiveEdge />
         <ActionSection />
       </main>

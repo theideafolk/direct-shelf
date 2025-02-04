@@ -15,7 +15,6 @@ const floatingAnimation = {
 const HeroSection = () => {
   return (
     <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-primary/90 to-[#3B82F6]/90 before:absolute before:inset-0 before:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] before:opacity-30 pt-20">
-      {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(5)].map((_, i) => (
           <motion.div
@@ -75,7 +74,7 @@ const HeroSection = () => {
             >
               Into a
             </motion.span>{" "}
-            <motion.span
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
@@ -83,15 +82,19 @@ const HeroSection = () => {
             >
               <TypeAnimation
                 sequence={[
-                  1000,
                   'Quick Commerce Leader',
                 ]}
                 wrapper="span"
-                speed={50}
-                className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent"
+                cursor={true}
                 repeat={0}
+                style={{
+                  background: 'linear-gradient(to right, #93C5FD, #C4B5FD)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  display: 'inline-block'
+                }}
               />
-            </motion.span>
+            </motion.div>
           </h1>
           <p className="text-lg md:text-xl opacity-90 mb-8">
             Join 200+ D2C brands offering 2-4 hour deliveries and capturing the ₹200B quick commerce revolution

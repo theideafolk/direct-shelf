@@ -1,10 +1,11 @@
-import { motion } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface GradientCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface GradientCardProps extends Omit<HTMLMotionProps<"div">, "className"> {
   children: React.ReactNode;
   index?: number;
   variant?: "default" | "feature" | "testimonial";
+  className?: string;
 }
 
 export const GradientCard = ({

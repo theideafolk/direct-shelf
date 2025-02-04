@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,6 +22,32 @@ const Header = () => {
     { href: "#case-studies", label: "Case Studies" },
     { href: "#coverage", label: "Coverage" },
   ];
+
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      x: "100%",
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut"
+      }
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    closed: { opacity: 0, x: 20 },
+    open: { opacity: 1, x: 0 }
+  };
 
   return (
     <header 
@@ -83,48 +109,66 @@ const Header = () => {
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
           <SheetTrigger asChild>
             <button className="md:hidden">
-              <motion.div
-                initial={false}
-                animate={isMobileMenuOpen ? "open" : "closed"}
-              >
+              <AnimatePresence mode="wait">
                 {isMobileMenuOpen ? (
-                  <X className={`h-6 w-6 transition-colors duration-300 ${
-                    isScrolled ? "text-primary" : "text-primary/90"
-                  }`} />
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className={`h-6 w-6 transition-colors duration-300 ${
+                      isScrolled ? "text-primary" : "text-primary/90"
+                    }`} />
+                  </motion.div>
                 ) : (
-                  <Menu className={`h-6 w-6 transition-colors duration-300 ${
-                    isScrolled ? "text-primary" : "text-primary/90"
-                  }`} />
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className={`h-6 w-6 transition-colors duration-300 ${
+                      isScrolled ? "text-primary" : "text-primary/90"
+                    }`} />
+                  </motion.div>
                 )}
-              </motion.div>
+              </AnimatePresence>
             </button>
           </SheetTrigger>
           <SheetContent 
             side="right" 
             className="w-full sm:w-[400px] pt-20 bg-white/95 backdrop-blur-lg"
           >
-            <nav className="flex flex-col space-y-4">
+            <motion.nav 
+              className="flex flex-col space-y-4"
+              initial="closed"
+              animate="open"
+              variants={menuVariants}
+            >
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  variants={itemVariants}
                   className="text-lg font-medium text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-md hover:bg-gray-100"
                 >
                   {item.label}
                 </motion.a>
               ))}
-              <Button 
-                variant="default"
-                className="mt-4 w-full bg-primary hover:bg-primary/90"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Calculate ROI
-              </Button>
-            </nav>
+              <motion.div variants={itemVariants}>
+                <Button 
+                  variant="default"
+                  className="mt-4 w-full bg-primary hover:bg-primary/90"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Calculate ROI
+                </Button>
+              </motion.div>
+            </motion.nav>
           </SheetContent>
         </Sheet>
       </div>

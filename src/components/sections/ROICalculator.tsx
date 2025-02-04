@@ -20,13 +20,8 @@ const ROICalculator = () => {
     const monthlyOrders = Number(data.monthlyOrders) || 0;
     const aov = Number(data.averageOrderValue) || 0;
     
-    // Additional Revenue (20% increase in conversions)
     const additionalRevenue = monthlyOrders * aov * 0.20;
-    
-    // Cost Savings (15% return rate with 20% reduction)
     const costSavings = monthlyOrders * aov * 0.15 * 0.20;
-    
-    // Total Monthly Impact
     const totalImpact = additionalRevenue + costSavings;
     
     return {
@@ -46,7 +41,7 @@ const ROICalculator = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden">
+    <section id="calculator" className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50/50" />
       
       <div className="container mx-auto px-4 relative">
@@ -67,12 +62,12 @@ const ROICalculator = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="h-full"
+            className="space-y-6 md:mt-8"
           >
             <CalculatorInput 
               formData={formData}

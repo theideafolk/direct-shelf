@@ -18,7 +18,6 @@ const Header = () => {
   const navItems = [
     { href: "#features", label: "Features" },
     { href: "#how-it-works", label: "How It Works" },
-    { href: "#coverage", label: "Coverage" },
   ];
 
   const menuVariants = {
@@ -45,6 +44,14 @@ const Header = () => {
   const itemVariants = {
     closed: { opacity: 0, x: 20 },
     open: { opacity: 1, x: 0 }
+  };
+
+  const handleNavClick = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+    }
   };
 
   const PhoneNumber = () => (
@@ -83,9 +90,9 @@ const Header = () => {
         
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            <motion.a 
+            <motion.button 
               key={item.href}
-              href={item.href} 
+              onClick={() => handleNavClick(item.href)}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               className={`text-sm font-medium transition-colors duration-300 ${
@@ -95,7 +102,7 @@ const Header = () => {
               }`}
             >
               {item.label}
-            </motion.a>
+            </motion.button>
           ))}
         </nav>
         
@@ -149,16 +156,15 @@ const Header = () => {
               animate="open"
               variants={menuVariants}
             >
-              {navItems.map((item, index) => (
-                <motion.a
+              {navItems.map((item) => (
+                <motion.button
                   key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => handleNavClick(item.href)}
                   variants={itemVariants}
-                  className="text-lg font-medium text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-md hover:bg-gray-100"
+                  className="text-lg font-medium text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-md hover:bg-gray-100 text-left"
                 >
                   {item.label}
-                </motion.a>
+                </motion.button>
               ))}
               <motion.div variants={itemVariants} className="px-4">
                 <PhoneNumber />

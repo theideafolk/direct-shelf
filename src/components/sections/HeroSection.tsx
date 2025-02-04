@@ -47,8 +47,47 @@ const HeroSection = () => {
           transition={{ duration: 0.6 }}
           className="w-full md:w-3/5 text-white pt-12 md:pt-0"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Turn Your D2C Brand Into a Quick Commerce Leader
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="inline-block"
+            >
+              Turn
+            </motion.span>{" "}
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="inline-block relative"
+            >
+              <span className="bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                Your D2C Brand
+              </span>
+              <motion.span
+                className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-300 to-pink-300"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 1, duration: 0.8 }}
+              />
+            </motion.span>{" "}
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="inline-block"
+            >
+              Into a
+            </motion.span>{" "}
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="inline-block bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent"
+            >
+              Quick Commerce Leader
+            </motion.span>
           </h1>
           <p className="text-lg md:text-xl opacity-90 mb-8">
             Join 200+ D2C brands offering 2-4 hour deliveries and capturing the ₹200B quick commerce revolution

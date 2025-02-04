@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,6 +14,13 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navItems = [
+    { href: "#features", label: "Features" },
+    { href: "#how-it-works", label: "How It Works" },
+    { href: "#case-studies", label: "Case Studies" },
+    { href: "#coverage", label: "Coverage" },
+  ];
 
   return (
     <header 
@@ -32,46 +41,19 @@ const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <a 
-            href="#features" 
-            className={`text-sm font-medium transition-colors duration-300 ${
-              isScrolled 
-                ? "text-gray-700 hover:text-primary" 
-                : "text-gray-800/90 hover:text-primary/90"
-            }`}
-          >
-            Features
-          </a>
-          <a 
-            href="#how-it-works" 
-            className={`text-sm font-medium transition-colors duration-300 ${
-              isScrolled 
-                ? "text-gray-700 hover:text-primary" 
-                : "text-gray-800/90 hover:text-primary/90"
-            }`}
-          >
-            How It Works
-          </a>
-          <a 
-            href="#case-studies" 
-            className={`text-sm font-medium transition-colors duration-300 ${
-              isScrolled 
-                ? "text-gray-700 hover:text-primary" 
-                : "text-gray-800/90 hover:text-primary/90"
-            }`}
-          >
-            Case Studies
-          </a>
-          <a 
-            href="#coverage" 
-            className={`text-sm font-medium transition-colors duration-300 ${
-              isScrolled 
-                ? "text-gray-700 hover:text-primary" 
-                : "text-gray-800/90 hover:text-primary/90"
-            }`}
-          >
-            Coverage
-          </a>
+          {navItems.map((item) => (
+            <a 
+              key={item.href}
+              href={item.href} 
+              className={`text-sm font-medium transition-colors duration-300 ${
+                isScrolled 
+                  ? "text-gray-700 hover:text-primary" 
+                  : "text-gray-800/90 hover:text-primary/90"
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
         
         <div className="hidden md:block">
@@ -87,11 +69,42 @@ const Header = () => {
           </Button>
         </div>
         
-        <button className="md:hidden">
-          <Menu className={`h-6 w-6 transition-colors duration-300 ${
-            isScrolled ? "text-primary" : "text-primary/90"
-          }`} />
-        </button>
+        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+          <SheetTrigger asChild>
+            <button className="md:hidden">
+              {isMobileMenuOpen ? (
+                <X className={`h-6 w-6 transition-colors duration-300 ${
+                  isScrolled ? "text-primary" : "text-primary/90"
+                }`} />
+              ) : (
+                <Menu className={`h-6 w-6 transition-colors duration-300 ${
+                  isScrolled ? "text-primary" : "text-primary/90"
+                }`} />
+              )}
+            </button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-20">
+            <nav className="flex flex-col space-y-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-lg font-medium text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-md hover:bg-gray-100"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <Button 
+                variant="default"
+                className="mt-4 w-full"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Calculate ROI
+              </Button>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );

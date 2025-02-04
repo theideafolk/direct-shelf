@@ -6,6 +6,11 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const HowItWorks = () => {
   const isMobile = useIsMobile();
   
+  const scrollToContact = () => {
+    const element = document.querySelector('#action-section');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+  
   return (
     <section id="how-it-works" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -34,6 +39,7 @@ const HowItWorks = () => {
           <Button 
             size="lg" 
             className="animate-fade-in delay-1000 bg-primary hover:bg-primary/90 text-white"
+            onClick={scrollToContact}
           >
             Start Your Quick Commerce Journey →
           </Button>

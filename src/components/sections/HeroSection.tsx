@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Play, ShoppingBag, Check } from "lucide-react";
+import { Play, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
 
@@ -21,7 +21,7 @@ const HeroSection = () => {
   return (
     <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#2B3990] to-[#4169E1] 
                         before:absolute before:inset-0 before:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] 
-                        before:opacity-10">
+                        before:opacity-5">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[#1E3A8A] animate-pulse"></div>
@@ -92,8 +92,8 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+          {/* Trust Indicators - Aligned with headline margins */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pl-0">
             <TrustCard text="Shopify Integration Ready" />
             <TrustCard text="Easy API Integration" />
             <TrustCard text="Custom Platform Support" />

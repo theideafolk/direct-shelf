@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, TrendingUp, Info, Clock, Package } from "lucide-react";
+import { Calculator, TrendingUp, Info } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import {
   Tooltip,
@@ -17,56 +17,43 @@ const ROICalculator = () => {
   const [formData, setFormData] = useState({
     monthlyOrders: "",
     averageOrderValue: "",
-    currentDeliveryTime: "",
-    currentReturnRate: ""
   });
 
   const [results, setResults] = useState({
-    projectedRevenue: 0,
-    additionalOrders: 0,
-    reducedReturns: 0,
-    lifetimeValue: 0
+    additionalRevenue: 0,
+    costSavings: 0,
+    totalImpact: 0
   });
 
-  const [isCalculating, setIsCalculating] = useState(false);
-
-  const handleCalculate = () => {
-    setIsCalculating(true);
+  // Calculate results instantly when input changes
+  const calculateResults = (data: typeof formData) => {
+    const monthlyOrders = Number(data.monthlyOrders) || 0;
+    const aov = Number(data.averageOrderValue) || 0;
     
-    // Simulate calculation delay for better UX
-    setTimeout(() => {
-      const monthlyOrders = Number(formData.monthlyOrders);
-      const aov = Number(formData.averageOrderValue);
-      
-      const newResults = {
-        projectedRevenue: monthlyOrders * aov * 1.25,
-        additionalOrders: monthlyOrders * 0.25,
-        reducedReturns: monthlyOrders * aov * 0.05,
-        lifetimeValue: monthlyOrders * aov * 1.4
-      };
-      
-      setResults(newResults);
-      setIsCalculating(false);
-      
-      toast({
-        title: "ROI Calculation Complete",
-        description: "See your potential growth with DirectShelf's quick commerce solution.",
-      });
-    }, 800);
+    // Additional Revenue (20% increase in conversions)
+    const additionalRevenue = monthlyOrders * aov * 0.20;
+    
+    // Cost Savings (15% return rate with 20% reduction)
+    const costSavings = monthlyOrders * aov * 0.15 * 0.20;
+    
+    // Total Monthly Impact
+    const totalImpact = additionalRevenue + costSavings;
+    
+    return {
+      additionalRevenue: Math.round(additionalRevenue / 1000) * 1000,
+      costSavings: Math.round(costSavings / 1000) * 1000,
+      totalImpact: Math.round(totalImpact / 1000) * 1000
+    };
   };
 
-  const deliveryBenefits = [
-    {
-      icon: Clock,
-      title: "2-4 Hour Delivery",
-      description: "Transform customer expectations with ultra-fast delivery"
-    },
-    {
-      icon: Package,
-      title: "Same-Day Fulfillment",
-      description: "Process and deliver orders within hours, not days"
-    }
-  ];
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newData = {
+      ...formData,
+      [e.target.name]: e.target.value
+    };
+    setFormData(newData);
+    setResults(calculateResults(newData));
+  };
 
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
@@ -86,36 +73,18 @@ const ROICalculator = () => {
             Calculate Your Growth Potential
           </h2>
           <p className="text-lg text-gray-600">
-            Join 200+ D2C brands revolutionizing their delivery experience
+            See your minimum expected impact with DirectShelf's quick commerce solution
           </p>
         </motion.div>
-
-        {/* Quick Delivery Benefits */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {deliveryBenefits.map((benefit, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-gray-100"
-            >
-              <benefit.icon className="w-10 h-10 text-blue-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-              <p className="text-gray-600">{benefit.description}</p>
-            </motion.div>
-          ))}
-        </div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="h-full"
+            className="space-y-6"
           >
-            <Card className="p-6 backdrop-blur-xl bg-white/80 border-gray-100/20 h-full">
+            <Card className="p-6 backdrop-blur-xl bg-white/80 border-gray-100/20">
               <div className="space-y-4">
                 {[
                   {
@@ -125,22 +94,10 @@ const ROICalculator = () => {
                     tooltip: "Your current average monthly order volume"
                   },
                   {
-                    label: "Average Order Value",
-                    placeholder: "e.g., ₹1500",
+                    label: "Average Order Value (₹)",
+                    placeholder: "e.g., 1500",
                     name: "averageOrderValue",
-                    tooltip: "Average value of each order"
-                  },
-                  {
-                    label: "Current Delivery Time (hours)",
-                    placeholder: "e.g., 72",
-                    name: "currentDeliveryTime",
-                    tooltip: "Your current average delivery time in hours"
-                  },
-                  {
-                    label: "Current Return Rate (%)",
-                    placeholder: "e.g., 20",
-                    name: "currentReturnRate",
-                    tooltip: "Your current product return rate percentage"
+                    tooltip: "Average value of each order in Rupees"
                   }
                 ].map((field) => (
                   <div key={field.name} className="relative">
@@ -162,39 +119,19 @@ const ROICalculator = () => {
                     <Input
                       type="number"
                       placeholder={field.placeholder}
+                      name={field.name}
                       value={formData[field.name as keyof typeof formData]}
-                      onChange={(e) => setFormData(prev => ({
-                        ...prev,
-                        [field.name]: e.target.value
-                      }))}
+                      onChange={handleInputChange}
                       className="w-full bg-white"
                     />
                   </div>
                 ))}
               </div>
-              
-              <Button 
-                onClick={handleCalculate}
-                className="w-full mt-6"
-                size="lg"
-                disabled={isCalculating}
-              >
-                {isCalculating ? (
-                  <span className="flex items-center">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="mr-2"
-                    >
-                      <Calculator className="w-4 h-4" />
-                    </motion.div>
-                    Calculating...
-                  </span>
-                ) : (
-                  "Calculate Growth Potential"
-                )}
-              </Button>
             </Card>
+
+            <div className="text-sm text-gray-500 italic">
+              * These calculations represent minimum expected impact based on actual customer data
+            </div>
           </motion.div>
           
           <motion.div
@@ -202,60 +139,72 @@ const ROICalculator = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="h-full"
           >
             <Card className="p-8 backdrop-blur-xl bg-white/80 border-gray-100/20 h-full">
               <AnimatePresence mode="wait">
-                {results.projectedRevenue > 0 ? (
-                  <motion.div
-                    key="results"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="space-y-6"
+                <motion.div
+                  key="results"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="space-y-6"
+                >
+                  <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
+                    <TrendingUp className="w-6 h-6 text-green-600" />
+                    Minimum Monthly Impact
+                  </h3>
+                  
+                  {[
+                    { 
+                      label: "Additional Revenue", 
+                      value: results.additionalRevenue,
+                      tooltip: "Based on 20% increase in conversions from same-day delivery"
+                    },
+                    { 
+                      label: "Cost Savings", 
+                      value: results.costSavings,
+                      tooltip: "From 20% reduction in return rates"
+                    },
+                    { 
+                      label: "Total Monthly Impact", 
+                      value: results.totalImpact,
+                      tooltip: "Combined impact of additional revenue and cost savings"
+                    }
+                  ].map((metric, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group"
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="text-sm text-gray-600">{metric.label}</div>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <Info className="w-4 h-4 text-gray-400" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>{metric.tooltip}</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 
+                                    bg-clip-text text-transparent group-hover:scale-105 transition-transform">
+                        ₹{metric.value.toLocaleString('en-IN')}
+                      </div>
+                    </motion.div>
+                  ))}
+
+                  <Button 
+                    className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white"
+                    size="lg"
                   >
-                    <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
-                      <TrendingUp className="w-6 h-6 text-green-600" />
-                      Your Growth Potential
-                    </h3>
-                    
-                    {[
-                      { label: "Projected Monthly Revenue", value: results.projectedRevenue },
-                      { label: "Additional Orders/Month", value: results.additionalOrders },
-                      { label: "Reduced Returns Value", value: results.reducedReturns },
-                      { label: "Customer Lifetime Value Impact", value: results.lifetimeValue }
-                    ].map((metric, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="group"
-                      >
-                        <div className="text-sm text-gray-600 mb-1">{metric.label}</div>
-                        <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 
-                                      bg-clip-text text-transparent group-hover:scale-105 transition-transform">
-                          ₹{metric.value.toLocaleString()}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="placeholder"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="h-full flex items-center justify-center text-center p-8"
-                  >
-                    <div className="space-y-4">
-                      <Calculator className="w-16 h-16 text-gray-300 mx-auto" />
-                      <p className="text-gray-500">
-                        Enter your business metrics to see potential growth with DirectShelf
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
+                    Get Your Detailed Growth Plan →
+                  </Button>
+                </motion.div>
               </AnimatePresence>
             </Card>
           </motion.div>

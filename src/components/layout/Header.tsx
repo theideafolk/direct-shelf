@@ -14,17 +14,17 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { href: "#calculator", label: "Calculate your ROI" },
+    { href: "#solution", label: "Why Choose Us" },
     { href: "#stats", label: "Our Metrics" },
+    { href: "#calculator", label: "Calculate Your ROI" },
     { href: "#how-it-works", label: "How It Works" },
-    { href: "#competitive-edge", label: "Why Choose Us" },
   ];
 
 
   const handleNavClick = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -51,18 +51,22 @@ const Header = () => {
         }
       `}
     >
-      <div className="container mx-auto px-4 h-full flex items-center justify-between">
+      <div className="container mx-auto px-4 h-full flex items-center">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className={`text-2xl font-bold transition-colors duration-300 ${
-            isScrolled ? "text-primary" : "text-primary/90"
-          }`}
+          className="h-16"
         >
-          DirectShelf
+          <img 
+            src="https://websiteassets-wisetutor.s3.eu-north-1.amazonaws.com/DirectShelf+Logo.png"
+            alt="DirectShelf Logo"
+            className={`h-full w-auto transition-opacity duration-300 min-w-[160px] ${
+              isScrolled ? "opacity-100" : "opacity-90"
+            }`}
+          />
         </motion.div>
         
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden lg:flex items-center space-x-8 ml-20">
           {navItems.map((item) => (
             <motion.button 
               key={item.href}
@@ -82,7 +86,8 @@ const Header = () => {
         
         <motion.div
           initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}>
+          animate={{ opacity: 1, x: 0 }}
+          className="ml-auto">
           <PhoneNumber />
         </motion.div>
       </div>

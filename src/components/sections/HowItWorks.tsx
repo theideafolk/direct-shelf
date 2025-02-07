@@ -12,7 +12,7 @@ const HowItWorks = () => {
   };
   
   return (
-    <section id="how-it-works" className="py-16 md:py-24 bg-white">
+    <section id="how-it-works" className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <SectionHeading 
           subtitle="Simple integration process to get you started quickly"

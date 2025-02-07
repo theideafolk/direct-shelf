@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import TrustCard from "../hero/TrustCard";
 import HeroHeadline from "../hero/HeroHeadline";
 import HeroButtons from "../hero/HeroButtons";
 import HeroImage from "../hero/HeroImage";
+import BenefitCard from "../hero/BenefitCard";
 
 const HeroSection = () => {
   return (
@@ -15,36 +15,51 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-radial from-transparent to-[#1E3A8A] animate-pulse delay-100"></div>
       </div>
 
-      <div className="container mx-auto px-4 h-full flex flex-col md:flex-row items-center relative z-10 py-16 md:py-24">
+      <div className="container mx-auto px-4 h-full flex flex-col md:flex-row items-center relative z-10 py-8 md:py-12 lg:py-18">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-full md:w-3/5 text-white space-y-8 pt-12 md:pt-0"
+          className="w-full md:w-1/2 text-white space-y-6 md:space-y-8 pt-12 md:pt-0"
         >
           {/* Quick Impact Text */}
           <motion.p
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-white/80 text-sm md:text-base font-medium tracking-wide"
+            className="text-white/80 text-sm md:text-base lg:text-lg font-medium tracking-wide"
           >
-            Zero Setup Cost • Go Live in 72 Hours
+            No minimum order commitment!
           </motion.p>
 
           <HeroHeadline />
 
-          <p className="text-lg md:text-xl text-white/90 font-light max-w-2xl">
+          <p className="text-base md:text-lg lg:text-xl text-white/90 font-light max-w-2xl">
             Join fast-growing D2C brands offering 2-4 hour deliveries and capturing the ₹200B quick commerce revolution
           </p>
 
           <HeroButtons />
 
-          {/* Trust Indicators - Aligned with headline margins */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pl-0">
-            <TrustCard text="Shopify Integration Ready" />
-            <TrustCard text="Easy API Integration" />
-            <TrustCard text="Custom Platform Support" />
+          {/* Benefits Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 max-w-3xl">
+            <BenefitCard
+              title="Customer Benefits"
+              benefits={[
+                "Instant deliveries delight and convert hesitant buyers",
+                "Reliable logistics reduce returns and dissatisfaction"
+              ]}
+              delay={0}
+              type="customer"
+            />
+            <BenefitCard
+              title="Brand Benefits"
+              benefits={[
+                "Lower logistics costs with scalable solutions",
+                "Data-driven insights to refine offerings and personalize experiences"
+              ]}
+              delay={1}
+              type="brand"
+            />
           </div>
         </motion.div>
 

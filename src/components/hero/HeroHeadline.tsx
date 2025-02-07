@@ -10,21 +10,24 @@ const HeroHeadline = () => {
         transition={{ delay: 0.2 }}
         className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight"
       >
-        <span className="block mb-4 bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent">
-          Turn Your D2C Brand
-        </span>
-        <span className="block mb-4 text-3xl md:text-4xl lg:text-5xl text-white/90">
-          Into a
-        </span>
-        <TypeAnimation
-          sequence={[
-            'Quick Commerce Leader',
-          ]}
-          wrapper="span"
-          cursor={true}
-          repeat={0}
-          className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent"
-        />
+        <div className="flex flex-wrap items-center gap-x-3">
+          <span className="bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent">
+            Your order—
+          </span>
+          <TypeAnimation
+            sequence={[
+              'fulfilled',
+            ]}
+            speed={150}
+            wrapper="span"
+            cursor={true}
+            repeat={0}
+            className="bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent"
+          />
+          <span className="bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent">
+            before you even wait.
+          </span>
+        </div>
       </motion.h1>
     </div>
   );

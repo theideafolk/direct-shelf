@@ -41,7 +41,7 @@ const ROICalculator = () => {
   };
 
   return (
-    <section id="calculator" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="calculator" className="py-16 md:py-24 relative overflow-hidden bg-white">
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50/50" />
       
       <div className="container mx-auto px-4 relative">
